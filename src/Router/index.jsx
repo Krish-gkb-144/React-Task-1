@@ -1,21 +1,22 @@
 import { createBrowserRouter } from "react-router-dom";
-import Auth from "../Auth";
-import Home from "../Home";
+import AuthApi from "../Components/Auth/AuthApi";
+import Layout from "../Layout";
+import { AllRoute } from "./AllRoute";
+import { AppRoute } from "./AppRoute";
 import AuthRouter from "./AuthRouter";
 import PrivateRouter from "./PrivateRouter";
-import Layout from "../Layout";
 
 const Router = createBrowserRouter([
   {
     element: <AuthRouter />,
-    children: [{ path: "/", element: <Auth />, index: true }],
+    children: [{ path: AllRoute.Login, element: <AuthApi />, index: true }],
   },
   {
     element: <PrivateRouter />,
     children: [
       {
         element: <Layout />,
-        children: [{ path: "/home", element: <Home /> }],
+        children: AppRoute,
       },
     ],
   },
